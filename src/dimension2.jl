@@ -26,27 +26,27 @@ function getindex(V::MyLittleVector2, i::Integer)
     elseif i==2
         return V.e2
     else
-        throw(BoundsError)    
+        throw(BoundsError())    
     end
 end
 
 function getindex(A::MyLittleMatrix2, i::Integer, j::Integer)
     if i==1
-        return j==1 ? A.e11 : j==2 ? A.e12 : throw(BoundsError)
+        return j==1 ? A.e11 : j==2 ? A.e12 : throw(BoundsError())
     elseif i==2
-        return j==1 ? A.e21 : j==2 ? A.e22 : throw(BoundsError)
+        return j==1 ? A.e21 : j==2 ? A.e22 : throw(BoundsError())
     else
-        throw(BoundsError)    
+        throw(BoundsError())    
     end
 end
 
 function getindex(A::MyLittleDiagonal2, i::Integer, j::Integer)
     if i==1
-        return j==1 ? A.e11 : j==2 ? 0.0 : throw(BoundsError)
+        return j==1 ? A.e11 : j==2 ? 0.0 : throw(BoundsError())
     elseif i==2
-        return j==1 ? 0.0 : j==2 ? A.e22 : throw(BoundsError)
+        return j==1 ? 0.0 : j==2 ? A.e22 : throw(BoundsError())
     else
-        throw(BoundsError)    
+        throw(BoundsError())    
     end
 end
 
@@ -95,6 +95,14 @@ transpose(A::MyLittleMatrix2) = MyLittleMatrix2(A.e11, A.e21, A.e12, A.e22)
 -(A::MyLittleMatrix2) = MyLittleMatrix2(-A.e11,-A.e12,-A.e21,-A.e22)
 
 
+# vector-vector operations
++(A::MyLittleVector2, B::MyLittleVector2) = MyLittleVector2(A.e1+B.e1, A.e2+B.e2)
+-(A::MyLittleVector2, B::MyLittleVector2) = MyLittleVector2(A.e1-B.e1, A.e2-B.e2)
+.*(A::MyLittleVector2, B::MyLittleVector2) = MyLittleVector2(A.e1*B.e1, A.e2*B.e2)
+./(A::MyLittleVector2, B::MyLittleVector2) = MyLittleVector2(A.e1/B.e1, A.e2/B.e2)
+.^(A::MyLittleVector2, B::MyLittleVector2) = MyLittleVector2(A.e1^B.e1, A.e2^B.e2)
+
+
 # Scalar-vector operations
 *(a::Real, V::MyLittleVector2) = MyLittleVector2(a*V.e1, a*V.e2)
 *(V::MyLittleVector2, a::Real) = *(a,V)
@@ -102,8 +110,12 @@ transpose(A::MyLittleMatrix2) = MyLittleMatrix2(A.e11, A.e21, A.e12, A.e22)
 +(V::MyLittleVector2, a::Real) = +(a,V)
 -(a::Real, V::MyLittleVector2) = MyLittleVector2(a-V.e1, a-V.e2)
 -(V::MyLittleVector2, a::Real) = MyLittleVector2(V.e1-a, V.e2-a)
+
+./(V::MyLittleVector2, a::Real) = MyLittleVector2(V.e1/a, V.e2/a)
 /(V::MyLittleVector2, a::Real) = MyLittleVector2(V.e1/a, V.e2/a)
 ./(a::Real, V::MyLittleVector2) = MyLittleVector2(a/V.e1, a/V.e2)
+/(a::Real, V::MyLittleVector2) = MyLittleVector2(a/V.e1, a/V.e2)
+
 .^(V::MyLittleVector2, a::Real) = MyLittleVector2(V.e1^a, V.e2^a)
 .^(a::Real, V::MyLittleVector2) = MyLittleVector2(a^V.e1, a^V.e2)
 
