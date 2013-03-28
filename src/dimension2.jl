@@ -54,9 +54,9 @@ end
 size(V::MyLittleVector2) = (2,)
 size(A::MyLittleDiagonal2) = (2,2)
 size(A::MyLittleMatrix2) = (2,2)
-size(V::MyLittleVector2, N::Integer) = N==1 ? 2 : error("Invalid dimension")
-size(A::MyLittleDiagonal2, N::Integer) = N==1 || N==2 ? 2 : error("Invalid dimension")
-size(A::MyLittleMatrix2, N::Integer) = N==1 || N==2 ? 2 : error("Invalid dimension")
+size(V::MyLittleVector2, N::Integer) = N==1 ? 2 : N>0 ? 1 : error("Invalid dimension")
+size(A::MyLittleDiagonal2, N::Integer) = N==1 || N==2 ? 2 : N>0 ? 1 : error("Invalid dimension")
+size(A::MyLittleMatrix2, N::Integer) = N==1 || N==2 ? 2 : N>0 ? 1 : error("Invalid dimension")
 length(V::MyLittleVector2) = 2
 length(A::MyLittleDiagonal2) = 4
 length(A::MyLittleMatrix2) = 4

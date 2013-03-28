@@ -67,9 +67,9 @@ end
 size(V::MyLittleVector3) = (3,)
 size(A::MyLittleDiagonal3) = (3,3)
 size(A::MyLittleMatrix3) = (3,3)
-size(V::MyLittleVector3, N::Integer) = N==1 ? 3 : error("Invalid dimension")
-size(A::MyLittleDiagonal3, N::Integer) = N==1 || N==2 ? 3 : error("Invalid dimension")
-size(A::MyLittleMatrix3, N::Integer) = N==1 || N==2 ? 3 : error("Invalid dimension")
+size(V::MyLittleVector3, N::Integer) = N==1 ? 3 : N>0 ? 1 : error("Invalid dimension")
+size(A::MyLittleDiagonal3, N::Integer) = N==1 || N==2 ? 3 : N>0 ? 1 : error("Invalid dimension")
+size(A::MyLittleMatrix3, N::Integer) = N==1 || N==2 ? 3 : N>0 ? 1 : error("Invalid dimension")
 length(V::MyLittleVector3) = 3
 length(A::MyLittleDiagonal3) = 9
 length(A::MyLittleMatrix3) = 9
