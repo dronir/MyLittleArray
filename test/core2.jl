@@ -61,3 +61,6 @@ v2 = Vec2d(6.0,5.0)
 
 # vector norm
 @assert norm(Vec2d(3.0,4.0)) == 5.0
+
+@assert eye(MyLittleMatrix2) * v1 == v1
+@assert eye(MyLittleDiagonal2) * v1 == v1
